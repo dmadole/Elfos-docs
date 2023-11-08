@@ -24,7 +24,7 @@ The boot loader is located in the first half or 256 bytes of the system sector. 
 The second half of the SDS contains the following information (offsets are from the beginning of the sector):
 
 | Offset | Meaning |
-|---------|---------|
+|:------:|:--------|
 | 100_103h | This entry contains the total number of sectors on the disk device. The most significant byte of the sector count is in 100h, least significant in 103h. The Elf/OS kernel does not actually use this entry, it is only used by FSGEN when the filesystem is being crated. |
 | 104h | This entry contains the filesystem type for the disk. So far all versions of Elf/OS support only filesystem type 1 which is Elf/OS 16-bit LAT. |
 | 105_106h | This entry specifies in which sector the master directory begins. Normally the first lump of the Common Data Area is the master directory, but this need not be. As long as the sector number is within the first 64k sectors of the disk the master directory can exist in any lump. |
@@ -45,7 +45,7 @@ The Lump Allocation Table, or LAT starts at sector 17 and uses as many sectors a
 The entries in the LAT table can be as follows:
 
 | Value | Meaning |
-|-------|---------|
+|:-----:|:--------|
 | 00000h | This specifies an available or unallocated entry. |
 | 0FEFEh | This entry is allocated to a file and contains the EOF for the file |
 | 0FFFFh | This entry marks an entry as being either nonexistant (off the end of the disk) or non-allocatable. Non-allocatable AUs are the SDS, KIB, and LAT sectors. |
@@ -56,16 +56,16 @@ To convert a lump number to the first sector number of the lump all you have to 
 
 To find where in the LAT table a particular lump entry is, use the
 following calculations (type 1 filesystems):
-``
+```
 LAT_Sector = (Lump / 256) + 17
 LAT_Entry_in_Sector = Lump MOD 256
 Offset_in_sector = LAT_Entry_in_Sector * 2
-``
+```
 To convert a LAT Sector/Entry number into the lump number, use these
 calculations (also for type 1 filesystems):
-``
+```
 lump = (LAT_sector - 17) * 256 + Entry_number
-``
+```
 Entry_number is obtained by taking the offset in the sector divided by 2.
 
 ## Common Data Area
@@ -83,7 +83,7 @@ Each file or directory on the disk is identified by a DIRENT. The Master Directo
 The structure of a DIRENT is as follows:
 
 | Offset | Meaning |
-|--------|---------|
+|:------:|:--------|
 | 00_03h | This field specifies which lump number is the first AU for this file. This can be converted directly to the first sector number by multiplying by the number of sectors per lump. The most significant byte is in offset 00h and the least significant is in offset 03h. If this DIRENT is not allocated then this filed will be all 00. |
 | 04_05h | This field specifies at which byte in the final lump the end of file is located. It is important to understand that this is the offset in the LAST lump of the file where the EOF is located, it is not an offset from the beginning of the file. |
 | 06 | This contains file flags. So far only bit 0 is defined, all others are reserved. If bit 0 is set then this DIRENT is for a subdirectory. |
@@ -95,7 +95,7 @@ The structure of a DIRENT is as follows:
 Within the 16-bit date and time fields, the values are formatted as follows:
 
 | Offset | Bits | Value | Bits | Value | Bits | Value |
-|-------|-----:|:------|-----:|:------|-----:|:------|
+|:------:|-----:|:------|-----:|:------|-----:|:------|
 | 07_08h | 15-9 | Year | 8-5 | Month | 4-0 | Day |
 | 09_0Ah | 15-11 | Hour | 10-5 | Minue | 4-0 | Second |
 
@@ -107,7 +107,7 @@ descriptor or FILDES to operate on. The FILDES is created when the file is opene
 The following fields are part of the FILDES:
 
 | Offset| Meaning |
-|-------|---------|
+|:-----:|:--------|
 | 00_03h | This field contains the current offset into the file. This field will be updated whenever the file is read or written, or if a seek operation is performed. This field can be read if you want to know the current offset is in the file. The most significant byte of the offset is in 00h and the least is in offset 03h. This value should NOT be changed by any means other than using o_seek. |
 | 04_05h | This field specifies the address of where this file's DTA, or Data Transfer Area, is located. The DTA must be 512 bytes in length and must be provided by your program. You normally set this field prior to opening the file. While the file is opened, the DTA will always hold the sector data where the current offset is pointing. |
 | 06_07h | This field is the EOF for the file. This is directly copied from the DIRENT when the file is opened. And just like in the DIRENT, this is the EOF offset in the final lump of the sector.|
@@ -119,7 +119,7 @@ The following fields are part of the FILDES:
 The flags field at offset 08h is defined as follows:
 
 | Bit | Meaning |
-|-----|---------|
+|:---:|:--------|
 | 0 | Sector has been written to. This flag will be set whenever this sector gets modified by an o_write call.
 | 1 | File is read only. If this bit is set then o_write will produce an error. This indicates that the file was requested to be opened as read only. |
 | 2 | This bit is set if the current file pointer is inside the final lump of the file. Elf/OS will only check for EOF condition if this bit is set. This bit should never be changed manualy. |
@@ -161,7 +161,7 @@ This section will describe on an overview level, what happens in the system for 
 2. When the file is opened succesfully the first 6 bytes of it are read. These first 6 bytes are the executable header and tell Elf/OS where to load the file. The first 6 bytes of the file are defined `as:`
 
     | Offset | Meaning |
-    |--------|---------|
+    |:------:|:--------|
     | 0-1 | This is the address in memory where the program needs to be loaded |
     | 2-3 | These 2 bytes specify how many bytes of the file are to be loaded. Note, it is not necessary to load the entire file into memory and therefore the memory footprint can be smaller than the actual executable file. This allows for possible overlays or data added at the end of the executable image. |
     | 4-5 | This the execution address for the program. Control is transferred to this address when the program is successfully loaded. |
@@ -1067,7 +1067,7 @@ First RD is saved so that it can be reset with the address of sysfildes. `rawwri
 ### Summary of Elf/OS subroutines
 
 | Subroutine | Description |
-|------------|-------------|
+|:-----------|:------------|
 |`append:` | Append a lump to end of current file |
 |`chdir:` | Change/view current directory |
 |`checkeof:` | Check if file is at end |
@@ -1142,7 +1142,7 @@ Elf/OS programs are normally packaged in Elf/OS package format. This format is r
 The beginning of a package image contains a table that specifies what is in the package and where it is located. The table has the following format:
 
 | Length | Description |
-|--------|-------------|
+|:------:|:------------|
 | n bytes | The name of the package as an ASCIIZ string |
 | 2 bytes | Offset into the package where the file is found |
 | 2 bytes | Ending offset |
