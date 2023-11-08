@@ -170,7 +170,7 @@ This section will describe on an overview level, what happens in the system for 
  4. If no read error occurred then control will be transferred to the address specified in the executable header. This call is made using SCAL and if the program maintains the stack can use SRET to exit and return back to `exec:`
 5. If the program returned back with SRET then DF will be cleared to indicate that no error occred and control will then be transferred back to the caller of `exec:`
 
-### Opening a File (`open:`):
+### Opening a File (`open:`)
 
 1. To open a file for reading/writing `open:` is called. The first thing `open:` will do is validate that the filename passed to is is valid. If the filename has invalid characters in it or is zero length then an error condition DF=1 is set and control is transferred back to the caller.
 2. `finddir:` is called in order to find the directory that holds the specified program.
@@ -1064,7 +1064,7 @@ This routine is used by Elf/OS whenever it needs to write system related sectors
 First RD is saved so that it can be reset with the address of sysfildes. `rawwrite:` is then called to write the reqested sector to disk. After the sector has been written the original RD is restored and control is transferred back to the caller.
 
 
-### Summary of Elf/OS subroutines:
+### Summary of Elf/OS subroutines
 
 | Subroutine | Description |
 |------------|-------------|
@@ -1141,13 +1141,14 @@ Elf/OS programs are normally packaged in Elf/OS package format. This format is r
 
 The beginning of a package image contains a table that specifies what is in the package and where it is located. The table has the following format:
 
-n bytes   - The name of the package as an ASCIIZ string.
-2 bytes   - Offset into the package where the file is found
-2 bytes   - Ending offset
-2 bytes   - file load address (this and following 4 bytes are the executable
-            header)
-2 bytes   - Number of bytes to load
-2 bytes   - Execution address
+| Length | Description |
+|--------|-------------|
+| n bytes | The name of the package as an ASCIIZ string |
+| 2 bytes | Offset into the package where the file is found |
+| 2 bytes | Ending offset |
+| 2 bytes | file load address (this and following 4 bytes are the executable header) |
+| 2 bytes | Number of bytes to load |
+| 2 bytes | Execution address |
 
 The next entry in the table would then follow, or a 00 byte to indicate that there are no more entries.
 
