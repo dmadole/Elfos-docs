@@ -1066,72 +1066,74 @@ First RD is saved so that it can be reset with the address of sysfildes. `rawwri
 
 ### Summary of Elf/OS subroutines:
 
-|`append:`|Append a lump to end of current file
-|`chdir:`|Change/view current directory
-`checkeof:`     Check if file is at end
-`checkwrt:`     Check to see if a sector needs to be written
-`cklstlmp:`     Check for last lump and EOF
-`close:`        Close a file
-`cmdlp:`        Main command loop
-`coldboot:`     Coldboot routine
-`create:`       Create a new file
-`delchain:`     Delete a chain of lumps
-`delete:`       Delete a file
-`exec:`         Execute a program
-`execbin:`      Execute a file from /bin
-`finalsl:`      Make sure a name has a final slash
-`finddir:`      Find a directory
-`findsep:`      Split pathname at separator
-`follow:`       Follow a directory tree
-`freedir:`      Get a free directory entry
-`freelump:`     Find a free lump
-`getfddrof:`    Get dir offset from file descriptor
-`getfddrsc:`    Get dir sector from file descriptor
-`getfddta:`     Get DTA from file descriptor
-`getfdeof:`     Get EOF from file descriptor
-`getfdflgs:`    Get flags from file descriptor
-`getfdofs:`     Get offset from file descriptor
-`getfdsec:`     Get current sector from file descriptor
-`getsecofs:`    Get current sector/offset
-`gettmdt:`      Get time and date from BIOS
-`incofs:`       Increment current offset in fildes
-`lmpsecofs:`    Convert lump number to latSector/latOffset
-`lmpsize:`      Set shift count variable for current lump sector size
-`loadsec:`      Load current sector from fildes
-`lumptosec:`    Convert lump number to first sector number in lump
-`mkdir:`        Make a directory
-`open:`         Open a file
-`opendir:`      Open a directory
-`openmd:`       Open master directory
-`rawread:`      Read a sector from disk
-`rawwrite:`     Write a sector to disk
-`read:`         Read bytes from file
-`readlump:`     Read a value from a lat entry
-`readsys:`      Read a sector using system fildes
-`rename:`       Rename a file
-`rmdir:`        Remove a directory
-`searchdir:`    Search a directory for an entry
-`secloaded:`    Determine if needed sector is already loaded
-`secofslmp:`    Convert latSector/latOffset to lump number
-`sectolump:`    Convert sector number to lump number
-`sector0:`      Load sector 0
-`seek:`         Perform file seek
-`seekend:`      Seek fildes to end
-`setfddrof:`    Set dir offset in file descriptor
-`setfddrsc:`    Set dir sector in file descriptor
-`setfddta:`     Set DTA in file descriptor
-`setfdeof:`     Set EOF in file descriptor
-`setfdflgs:`    Set flags in file descriptor
-`setfdofs:`     Set offset in file descriptor
-`setfdsec:`     Set current sector in file descriptor
-`settrx:`       Setup transfer address
-`setupfd:`      Setup a new file descriptor
-`startlump:`    Get starting lump for a file
-`validate:`     Check filename to make sure it is valid
-`warmboot:`     Warmboot entry point
-`write:`        Write bytes to file
-`writelump:`    Write a value to a lat entry
-`writesys:`     Write a sectur using system fildes
+| Subroutine | Description |
+|------------|-------------|
+|`append:` | Append a lump to end of current file |
+|`chdir:` | Change/view current directory |
+|`checkeof:` | Check if file is at end |
+|`checkwrt:` | Check to see if a sector needs to be written |
+|`cklstlmp:` | Check for last lump and EOF |
+|`close:` | Close a file |
+|`cmdlp:` | Main command loop |
+|`coldboot:` | Coldboot routine |
+|`create:` | Create a new file |
+|`delchain:` | Delete a chain of lumps |
+|`delete:` | Delete a file |
+|`exec:` | Execute a program |
+|`execbin:` | Execute a file from /bin |
+|`finalsl:` | Make sure a name has a final slash |
+|`finddir:` | Find a directory |
+|`findsep:` | Split pathname at separator |
+|`follow:` | Follow a directory tree |
+|`freedir:` | Get a free directory entry |
+|`freelump:` | Find a free lump |
+|`getfddrof:` | Get dir offset from file descriptor |
+|`getfddrsc:` | Get dir sector from file descriptor |
+|`getfddta:` | Get DTA from file descriptor |
+|`getfdeof:` | Get EOF from file descriptor |
+|`getfdflgs:` | Get flags from file descriptor |
+|`getfdofs:` | Get offset from file descriptor |
+|`getfdsec:` | Get current sector from file descriptor |
+|`getsecofs:` | Get current sector/offset |
+|`gettmdt:` | Get time and date from BIOS |
+|`incofs:` | Increment current offset in fildes |
+|`lmpsecofs:` | Convert lump number to latSector/latOffset |
+|`lmpsize:` | Set shift count variable for current lump sector size |
+|`loadsec:` | Load current sector from fildes |
+|`lumptosec:` | Convert lump number to first sector number in lump |
+|`mkdir:` | Make a directory |
+|`open:` | Open a file |
+|`opendir:` | Open a directory |
+|`openmd:` | Open master directory |
+|`rawread:` | Read a sector from disk |
+|`rawwrite:` | Write a sector to disk |
+|`read:` | Read bytes from file |
+|`readlump:` | Read a value from a lat entry |
+|`readsys:` | Read a sector using system fildes |
+|`rename:` | Rename a file |
+|`rmdir:` | Remove a directory |
+|`searchdir:` | Search a directory for an entry |
+|`secloaded:` | Determine if needed sector is already loaded |
+|`secofslmp:` | Convert latSector/latOffset to lump number |
+|`sectolump:` | Convert sector number to lump number |
+|`sector0:` | Load sector 0 |
+|`seek:` | Perform file seek |
+|`seekend:` | Seek fildes to end |
+|`setfddrof:` | Set dir offset in file descriptor |
+|`setfddrsc:` | Set dir sector in file descriptor |
+|`setfddta:` | Set DTA in file descriptor |
+|`setfdeof:` | Set EOF in file descriptor |
+|`setfdflgs:` | Set flags in file descriptor |
+|`setfdofs:` | Set offset in file descriptor |
+|`setfdsec:` | Set current sector in file descriptor |
+|`settrx:` | Setup transfer address |
+|`setupfd:` | Setup a new file descriptor |
+|`startlump:` | Get starting lump for a file |
+|`validate:` | Check filename to make sure it is valid |
+|`warmboot:` | Warmboot entry point |
+|`write:` | Write bytes to file |
+|`writelump:` | Write a value to a lat entry |
+|`writesys:` | Write a sectur using system fildes |
 
 ## Package Format
 
