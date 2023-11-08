@@ -1066,8 +1066,8 @@ First RD is saved so that it can be reset with the address of sysfildes. `rawwri
 
 ### Summary of Elf/OS subroutines:
 
-`append:`       Append a lump to end of current file
-`chdir:`        Change/view current directory
+|`append:`|Append a lump to end of current file
+|`chdir:`|Change/view current directory
 `checkeof:`     Check if file is at end
 `checkwrt:`     Check to see if a sector needs to be written
 `cklstlmp:`     Check for last lump and EOF
